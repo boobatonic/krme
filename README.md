@@ -8,3 +8,13 @@
     <p>fotoweb</p>
 </body>
 </html>
+
+<style>
+body {
+    background-color: lightblue;
+    font-family: Arial;
+}
+h1 {
+    color: darkblue;
+}
+</style>
