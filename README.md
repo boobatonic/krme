@@ -7,7 +7,6 @@
     
     <p>fotoweb</p>
 </body>
-</html>
 
 <style>
 body {
@@ -18,3 +17,5 @@ h1 {
     color: darkblue;
 }
 </style>
+</html>
+
