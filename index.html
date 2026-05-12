@@ -7,44 +7,74 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
- <title>krme</title>
-  
+
+  <title>krme</title>
+
   <style>
+
     body {
       font-family: "Jersey 10", Arial, sans-serif;
       font-size: 10pt;
-    
+      background: #E8E8E8;
+      margin: 20px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 60px;              /* espacio entre foto y texto */
+      margin-bottom: 100px;   /* espacio entre bloques */
+      background: #E8E8E8;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
     img {
-  max-width: 300px;
-  width: 100%;
-  height: auto;
-}
-    
-  </style>
-</head>
-    
+      max-width: 350px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .texto {
+      max-width: 400px;
+    }
+
   </style>
 </head>
 
 <body>
 
   <header>
-    <h1>krme</h1>
-    <p>fotolibro</p>
+    <p>un blog</p>
   </header>
 
   <main>
 
     <div class="card">
-  
 
-      <img src="foto1.png" >
+      <img src="foto1.png">
+
+      <div class="texto">
+        <h2>foto 1</h2>
+        <p>
+          que tal. como va?
+        </p>
+      </div>
+
     </div>
 
     <div class="card">
-      
-      <img src="foto2.png" >
+
+      <img src="foto2.png">
+
+      <div class="texto">
+        <h2>foto 2</h2>
+        <p>
+          hola hola hola.
+        </p>
+      </div>
+
     </div>
 
   </main>
