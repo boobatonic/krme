@@ -36,14 +36,11 @@
       padding: 10px;
     }
 
-    /* POST (tipo tumblr card) */
+    /* POST */
     .post {
-    
       background: #fbfbfb;
-      border: 0px solid #e3e3e3;
       margin-bottom: 60px;
       padding: 10px;
-      border-radius: 0px;
 
       display: flex;
       gap: 25px;
@@ -55,7 +52,6 @@
       max-width: 450px;
       width: 100%;
       height: auto;
-      border-radius: 0px;
     }
 
     .text {
@@ -65,7 +61,7 @@
     }
 
     .text h2 {
-      font-family: Roboto, san-serif;
+      font-family: Roboto, sans-serif;
       font-size: 10px;
       margin-top: 0;
       font-style: italic;
@@ -74,6 +70,7 @@
     .text p {
       font-size: 9.5pt;
       line-height: 1.7;
+      white-space: pre-line;
     }
 
     a {
@@ -93,54 +90,69 @@
     }
 
   </style>
+
 </head>
+
 
 <body>
 
 <header>
   hola<br>
-  
 </header>
 
-<div class="container">
 
-  <!-- POST 1 -->
-  <div class="post">
-    <img src="" alt="">
-
-    <div class="text">
-      <h2>13/07/2026</h2>
-      <p>
-okey. mi primer posteo. no se muy bien que decir. tardé mil años en hacer esta web. el dominio lo compre hace mas de un año creo. hace dos meses arranqué a ver como podia poner esto en marcha. estuve varias horas y un poco me rendí. pero ayer a la noche lo pude resolver en 30min. necesitaba un poco de distancia maybe.<br><br> 
-estos días estuve intentando entender si soy una persona que habla mucho o poco. una amiga me dijo que le parecía más introvertida y un poco me sorprendió. creo que puedo hablar mucho sin parar, pero también me gusta el silencio. y me gusta estar en silencio con alguien.
-me parece que no es ningún extremo, o mejor dicho a veces es uno y a veces es el otro. mi mamá siempre me catalogó de introvertida pero porque con mi familia extendida nunca hablé mucho. claro ella solo me veía socializar de esa manera. en cambio mis amigas del colegio dirían que soy más extrovertida.
-yo me siento promedio. me siento una persona normal. <br><br>
-
-y pienso en este espacio que me cree a mi misma, este blog, y digo ¿para que? ¿para mi? si lo publico es porque quiero que alguien lo lea... ¿y? 
-
-por lo pronto lo dejaré como una bitácora de cosas. mañana quiero ir a pegar cosas en la calle, talvez hacer un "grafitti". ojalá lo haga. chau, que duerman bien. 
-      </p>
-      
-    </div>
-  </div>
-
-  <!-- POST 2 -->
-  <div class="post">
-    <img src="" alt="">
-
-    <div class="text">
-     
-      <p>
-        
-      </p>
-    </div>
-  </div>
+<div class="container" id="posts">
 
 </div>
+
 
 <footer>
   © bsas
 </footer>
+
+
+
+<script>
+
+fetch("posts.json")
+.then(res => res.json())
+.then(posts => {
+
+  const contenedor = document.getElementById("posts");
+
+  posts.forEach(post => {
+
+    contenedor.innerHTML += `
+
+      <div class="post">
+
+        ${
+          post.imagen 
+          ? `<img src="${post.imagen}" alt="">`
+          : ""
+        }
+
+
+        <div class="text">
+
+          <h2>${post.fecha}</h2>
+
+          <p>
+          ${post.contenido}
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+});
+
+</script>
+
 
 </body>
 </html>
