@@ -1,100 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>krme</title>
+<title>krme</title>
 
-  <!-- FONT -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap" rel="stylesheet">
 
-  <style>
+<style>
 
-    body {
-      margin: 0;
-      font-family: Roboto, sans-serif;
-      background: #fbfbfb;
-      color: #2c2c2c;
-    }
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  background: #fbfbfb;
+  color: #2c2c2c;
+}
 
-    /* HEADER */
-    header {
-      font-family: "Jacquard 24", serif;
-      text-align: left;
-      padding: 25px 50px;
-      font-size: 30px;
-      text-transform: lowercase;
-    }
+header {
+  font-family: "Jacquard 24", serif;
+  text-align: left;
+  padding: 25px 50px;
+  font-size: 30px;
+  text-transform: lowercase;
+}
 
-    /* CONTENEDOR */
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 10px;
-    }
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 10px;
+}
 
-    /* POST */
-    .post {
-      background: #fbfbfb;
-      margin-bottom: 60px;
-      padding: 10px;
+.post {
+  background: #fbfbfb;
+  margin-bottom: 60px;
+  padding: 10px;
 
-      display: flex;
-      gap: 25px;
-      align-items: flex-start;
-    }
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+}
 
-    img {
-      order: 2;
-      max-width: 450px;
-      width: 100%;
-      height: auto;
-    }
+img {
+  order: 2;
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+}
 
-    .text {
-      order: 1;
-      flex: 1;
-      text-align: right;
-    }
+.text {
+  order: 1;
+  flex: 1;
+  text-align: right;
+}
 
-    .text h2 {
-      font-family: Roboto, sans-serif;
-      font-size: 10px;
-      margin-top: 0;
-      font-style: italic;
-    }
+.text h2 {
+  font-family: Roboto, sans-serif;
+  font-size: 10px;
+  margin-top: 0;
+  font-style: italic;
+}
 
-    .text p {
-      font-size: 9.5pt;
-      line-height: 1.7;
-      white-space: pre-line;
-    }
+.text p {
+  font-size: 9.5pt;
+  line-height: 1.7;
+  white-space: pre-line;
+}
 
-    a {
-      color: #000;
-      text-decoration: none;
-    }
+a {
+  color: #000;
+  text-decoration: none;
+}
 
-    a:hover {
-      color: #B7F719;
-    }
+a:hover {
+  color: #B7F719;
+}
 
-    footer {
-      text-align: right;
-      padding: 40px;
-      font-size: 7pt;
-      color: #777;
-    }
+footer {
+  text-align: right;
+  padding: 40px;
+  font-size: 7pt;
+  color: #777;
+}
 
-  </style>
+</style>
 
 </head>
 
 
 <body>
+
 
 <header>
   hola<br>
@@ -107,49 +104,89 @@
 
 
 <footer>
-  © bsas
+© bsas
 </footer>
 
 
 
 <script>
 
-fetch("posts.json")
-.then(res => res.json())
-.then(posts => {
 
-  const contenedor = document.getElementById("posts");
+// Agregás nuevos posts acá
+const archivos = [
+  "post_01.json",
+  "post_02.json",
+  "post_03.json"
+];
 
-  posts.forEach(post => {
+
+const contenedor = document.getElementById("posts");
+
+
+archivos.forEach(archivo => {
+
+
+  fetch(archivo)
+
+  .then(res => {
+
+    if (!res.ok) {
+      throw new Error("No se encontró " + archivo);
+    }
+
+    return res.json();
+
+  })
+
+
+  .then(post => {
+
 
     contenedor.innerHTML += `
 
-      <div class="post">
-
-        ${
-          post.imagen 
-          ? `<img src="${post.imagen}" alt="">`
-          : ""
-        }
+    <div class="post">
 
 
-        <div class="text">
+      ${
+        post.imagen
+        ? `<img src="${post.imagen}" alt="">`
+        : ""
+      }
 
-          <h2>${post.fecha}</h2>
 
-          <p>
+      <div class="text">
+
+
+        <h2>
+          ${post.fecha}
+        </h2>
+
+
+        <p>
           ${post.contenido}
-          </p>
+        </p>
 
-        </div>
 
       </div>
 
+
+    </div>
+
     `;
+
+
+  })
+
+
+  .catch(error => {
+
+    console.error(error);
 
   });
 
+
 });
+
 
 </script>
 
